@@ -1,6 +1,12 @@
 import './ItemNews.css';
 
-function ItemNews({ img, title, content, date }) {
+import {
+    Stack,
+    Button
+} from '@mui/material'
+
+function ItemNews({ img, title, content, date, isAuth, deleteNews, id }) {
+
     return (
         <div className="item-news">
             <div className="item-news__image-wrapper">
@@ -11,6 +17,13 @@ function ItemNews({ img, title, content, date }) {
                 <p className="item-news__content">{ content }</p>
                 <p className="item-news__date">{ date }</p>
             </div>
+            {
+                isAuth &&
+                <Stack className="item-news__control" spacing={2} direction="row">
+                    <Button onClick={() => deleteNews(id) } variant="text">Delete</Button>
+                    <Button variant="conteined">Edit</Button>
+                </Stack>
+            }
         </div>
     )
 }
